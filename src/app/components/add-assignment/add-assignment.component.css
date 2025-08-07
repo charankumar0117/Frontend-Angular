@@ -1,0 +1,35 @@
+/* Simplified Add Assignment Styling */
+.modal-backdrop-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+}
+
+.quiz-popup-modern {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 1051;
+}
+
+.quiz-popup-modern .card {
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .quiz-popup-modern {
+    width: 95%;
+    margin: 20px;
+  }
+}
+  

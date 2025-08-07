@@ -1,0 +1,110 @@
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <!-- Header -->
+      <div class="card card-modern shadow-lg mb-4 animate-fade-in-up">
+        <div class="card-header bg-primary-gradient text-white">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <div class="header-icon me-3">
+                <i class="fas fa-clipboard-list fa-2x"></i>
+              </div>
+              <div>
+                <h3 class="fw-bold mb-1">Assignment Management</h3>
+                <p class="mb-0 text-white-50">Create and manage course assignments</p>
+              </div>
+            </div>
+            <div class="header-stats">
+              <span class="badge bg-light text-dark fs-6 px-3 py-2">
+                <i class="fas fa-tasks me-1"></i>
+                Course ID: {{ courseId }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Assignment Form -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="card border">
+            <div class="card-header bg-light">
+              <h5 class="mb-0">Create New Assignment</h5>
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="submitAssignment()" #assignmentForm="ngForm">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="maxScore" class="form-label">Maximum Score</label>
+                    <input 
+                      type="number" 
+                      id="maxScore"
+                      class="form-control" 
+                      [(ngModel)]="maxScore" 
+                      name="maxScore" 
+                      placeholder="Enter maximum score"
+                      min="1"
+                      max="100"
+                      required 
+                    />
+                  </div>
+                  <div class="col-md-6 d-flex align-items-end">
+                    <button 
+                      type="button" 
+                      class="btn btn-primary w-100" 
+                      (click)="openQuizPopup()"
+                      [disabled]="!maxScore || maxScore <= 0 || maxScore > 100"
+                    >
+                      Create Quiz
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assignment List -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card border">
+            <div class="card-header bg-light">
+              <h5 class="mb-0">Course Assignments</h5>
+            </div>
+            <div class="card-body">
+              <app-assignment-list [courseId]="courseId"></app-assignment-list>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Popup Modal -->
+  <div class="modal-backdrop-custom" *ngIf="showQuizPopup" (click)="closeQuizPopup()"></div>
+  <div class="quiz-popup-modern" *ngIf="showQuizPopup">
+    <div class="card card-modern shadow-lg border-0">
+      <div class="card-header bg-primary-gradient text-white border-0">
+        <div class="d-flex align-items-center justify-content-between">
+          <h5 class="fw-bold mb-0">
+            <i class="fas fa-brain me-2"></i>
+            Create Quiz
+          </h5>
+          <button 
+            type="button" 
+            class="btn btn-outline-light btn-sm" 
+            (click)="closeQuizPopup()"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body p-4">
+        <app-add-quiz (quizSubmit)="getQuiz($event)"></app-add-quiz>
+      </div>
+    </div>
+  </div>
+</div>
+
+

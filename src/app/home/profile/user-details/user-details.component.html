@@ -1,0 +1,63 @@
+<div class="container-fluid section-padding">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card card-modern shadow-lg animate-fade-in-up">
+        <!-- Profile Header -->
+        <div class="card-header bg-primary-gradient text-white text-center py-4">
+          <div class="mb-3">
+            <div class="profile-avatar mx-auto">
+              <i class="fas fa-user-circle fa-5x"></i>
+            </div>
+          </div>
+          <h2 class="fw-bold mb-2">{{ name }}</h2>
+          <span class="badge bg-light text-dark fs-6 px-3 py-2 rounded-pill">
+            <i class="fas fa-{{ role === 'STUDENT' ? 'user-graduate' : 'chalkboard-teacher' }} me-2"></i>
+            {{ role }}
+          </span>
+        </div>
+
+        <!-- Profile Body -->
+        <div class="card-body p-5">
+          <div class="row justify-content-center">
+            <!-- Personal Information -->
+            <div class="col-md-8 mb-4">
+              <h5 class="text-primary fw-bold mb-3">
+                <i class="fas fa-info-circle me-2"></i>
+                Personal Information
+              </h5>
+              
+              <div class="info-item mb-3">
+                <label class="text-muted small fw-semibold">Full Name</label>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-user text-primary me-2"></i>
+                  <span class="fw-semibold">{{ name }}</span>
+                </div>
+              </div>
+
+              <div class="info-item mb-3">
+                <label class="text-muted small fw-semibold">Email Address</label>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-envelope text-primary me-2"></i>
+                  <span class="fw-semibold">{{ email }}</span>
+                </div>
+              </div>
+
+              <div class="info-item mb-3">
+                <label class="text-muted small fw-semibold">Account Type</label>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-{{ role === 'STUDENT' ? 'user-graduate' : 'chalkboard-teacher' }} text-primary me-2"></i>
+                  <span class="fw-semibold">{{ role }}</span>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+  

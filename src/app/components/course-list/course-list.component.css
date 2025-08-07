@@ -1,0 +1,34 @@
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+  }
+  
+  button {
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+  }
+  
+  button.btn-outline-danger:hover {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  button.btn-sm {
+    font-size: 13px;
+    padding: 4px 10px;
+  }
+  
+  .d-flex button {
+    margin-left: 4px;
+  }
+  

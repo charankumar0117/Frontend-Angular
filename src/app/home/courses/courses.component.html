@@ -1,0 +1,26 @@
+<div class="simple-page">
+  
+  <!-- Simple Header -->
+  <div class="page-header">
+    <h2>Available Courses</h2>
+    <p>Browse our course collection</p>
+  </div>
+
+  <!-- Courses Section -->
+  @if (listOfCourses && listOfCourses.length > 0) {
+    <div class="courses-grid">
+      @for (item of listOfCourses; track $index) {
+        <div class="course-item">
+          <app-cards [courseData]="item"></app-cards>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="no-courses">
+      <h3>No Courses Available</h3>
+      <p>Please check back later for new courses.</p>
+    </div>
+  }
+
+</div>
+   

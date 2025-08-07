@@ -1,0 +1,145 @@
+<div class="min-vh-100 d-flex align-items-center bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="card card-modern shadow-lg animate-fade-in-up">
+          <div class="card-body p-5">
+            <!-- Header -->
+            <div class="text-center mb-4">
+              <div class="mb-3">
+                <i class="fas fa-user-plus fs-1 text-primary"></i>
+              </div>
+              <h2 class="card-title fw-bold text-dark">Create Account</h2>
+              <p class="text-muted mb-0">Join our learning platform today</p>
+            </div>
+
+            <!-- Signup Form -->
+            <form (ngSubmit)="signup()" #signupForm="ngForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="name" class="form-label fw-semibold">Full Name</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0">
+                      <i class="fas fa-user text-muted"></i>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control border-start-0 ps-0"
+                      id="name"
+                      placeholder="Enter your full name"
+                      [(ngModel)]="name"
+                      name="name"
+                      required
+                      #nameField="ngModel"
+                    />
+                  </div>
+                  <div class="invalid-feedback d-block" *ngIf="nameField.invalid && nameField.touched">
+                    Full name is required.
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label fw-semibold">Email Address</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0">
+                      <i class="fas fa-envelope text-muted"></i>
+                    </span>
+                    <input
+                      type="email"
+                      class="form-control border-start-0 ps-0"
+                      id="email"
+                      placeholder="Enter your email"
+                      [(ngModel)]="email"
+                      name="email"
+                      required
+                      #emailField="ngModel"
+                    />
+                  </div>
+                  <div class="invalid-feedback d-block" *ngIf="emailField.invalid && emailField.touched">
+                    Please enter a valid email address.
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="password" class="form-label fw-semibold">Password</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0">
+                      <i class="fas fa-lock text-muted"></i>
+                    </span>
+                    <input
+                      type="password"
+                      class="form-control border-start-0 ps-0"
+                      id="password"
+                      placeholder="Create a password"
+                      [(ngModel)]="password"
+                      name="password"
+                      required
+                      #passwordField="ngModel"
+                    />
+                  </div>
+                  <div class="invalid-feedback d-block" *ngIf="passwordField.invalid && passwordField.touched">
+                    Password is required.
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                  <label for="role" class="form-label fw-semibold">Account Type</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light border-end-0">
+                      <i class="fas fa-users text-muted"></i>
+                    </span>
+                    <select
+                      class="form-select border-start-0"
+                      id="role"
+                      [(ngModel)]="role"
+                      name="role"
+                      required
+                      #roleField="ngModel"
+                    >
+                      <option value="" disabled>Select your role</option>
+                      <option value="STUDENT">Student</option>
+                      <option value="INSTRUCTOR">Instructor</option>
+                    </select>
+                  </div>
+                  <div class="invalid-feedback d-block" *ngIf="roleField.invalid && roleField.touched">
+                    Please select your account type.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Role Description -->
+              <div class="alert alert-info d-flex align-items-center mb-4" role="alert" *ngIf="role">
+                <i class="fas fa-info-circle me-2"></i>
+                <div *ngIf="role === 'STUDENT'">
+                  As a <strong>Student</strong>, you can enroll in courses, submit assignments, and track your progress.
+                </div>
+                <div *ngIf="role === 'INSTRUCTOR'">
+                  As an <strong>Instructor</strong>, you can create courses, manage assignments, and evaluate students.
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <div class="d-grid gap-2 mb-3">
+                <button type="submit" class="btn btn-primary btn-lg btn-custom" [disabled]="signupForm.invalid">
+                  <i class="fas fa-user-plus me-2"></i>
+                  Create Account
+                </button>
+              </div>
+
+              <div class="d-grid gap-2 mb-4">
+                <button type="button" class="btn btn-outline-secondary btn-custom" (click)="goToLogin()">
+                  <i class="fas fa-arrow-left me-2"></i>
+                  Back to Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

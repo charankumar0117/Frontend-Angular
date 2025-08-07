@@ -1,0 +1,104 @@
+/* Fixed Layout for Enrolls Component */
+.container-fluid {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.row.h-100 {
+  margin: 0;
+  height: 100%;
+}
+
+.col-md-4, .col-md-8 {
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable Left Panel (Course List) */
+.scrollable-left {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 60px); /* Subtract header height */
+  padding: 1rem;
+}
+
+/* Scrollable Right Panel (Course Details) */
+.scrollable-right {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 60px); /* Subtract header height */
+  padding: 1.5rem;
+}
+
+/* Custom Scrollbar for both panels */
+.scrollable-left::-webkit-scrollbar,
+.scrollable-right::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-left::-webkit-scrollbar-track,
+.scrollable-right::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.scrollable-left::-webkit-scrollbar-thumb,
+.scrollable-right::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.scrollable-left::-webkit-scrollbar-thumb:hover,
+.scrollable-right::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Panel Headers */
+.p-3.border-bottom {
+  flex-shrink: 0;
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6 !important;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container-fluid {
+    height: auto;
+    overflow: visible;
+  }
+  
+  .row.h-100 {
+    height: auto;
+    flex-direction: column;
+  }
+  
+  .col-md-4, .col-md-8 {
+    height: auto;
+    max-height: 50vh;
+  }
+  
+  .scrollable-left, .scrollable-right {
+    height: 40vh;
+    max-height: 40vh;
+  }
+}
+
+/* Remove old styles */
+.course-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.course-card {
+  max-width: 300px;
+  width: 100%;
+}
+  

@@ -1,0 +1,135 @@
+<div class="container-fluid py-4">
+  <div class="row g-4">
+    <!-- Courses List Panel -->
+    <div class="col-lg-4">
+      <div class="card card-modern shadow-lg h-100 animate-fade-in-up" style="animation-delay: 0.1s;">
+        <div class="card-header bg-light border-0">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0">
+              <i class="fas fa-list text-primary me-2"></i>
+              My Courses
+            </h5>
+            <button
+              class="btn btn-primary btn-sm btn-custom"
+              (click)="showAddCourse = true; selectedCourse = null"
+            >
+              <i class="fas fa-plus me-1"></i>
+              Add Course
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body p-0">
+          <div class="courses-list-container">
+            @if(courses?.length || 0){
+              <div class="courses-list p-3">
+                <app-course-list
+                  [courses]="courses"
+                  (selectCourse)="onCourseSelected($event)"
+                ></app-course-list>
+              </div>
+            } @else {
+              <div class="empty-state text-center py-5">
+                <div class="mb-3">
+                  <i class="fas fa-book text-muted" style="font-size: 3rem;"></i>
+                </div>
+                <h6 class="text-muted mb-2">No Courses Yet</h6>
+                <p class="text-muted small mb-3">Create your first course to get started</p>
+                <button
+                  class="btn btn-primary btn-custom"
+                  (click)="showAddCourse = true; selectedCourse = null"
+                >
+                  <i class="fas fa-plus me-2"></i>
+                  Create Course
+                </button>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Panel -->
+    <div class="col-lg-8">
+      <div class="card card-modern shadow-lg h-100 animate-fade-in-up" style="animation-delay: 0.2s;">
+        <div class="card-header bg-light border-0">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-{{ showAddCourse ? 'plus-circle' : 'info-circle' }} text-primary me-2"></i>
+            <h5 class="fw-bold mb-0">
+              {{ showAddCourse ? "Add New Course" : (selectedCourse ? "Course Details" : "Select a Course") }}
+            </h5>
+          </div>
+        </div>
+
+        <div class="card-body content-area">
+          <!-- Course Details View -->
+          @if(!showAddCourse && selectedCourse){
+            <div class="course-details-container">
+              <app-course-detail
+                [course]="selectedCourse"
+                (deleteCourse)="onCourseDeleted($event)"
+                (addAssignmentClick)="onAddAssignmentClicked($event)"
+              ></app-course-detail>
+
+              <!-- Add Assignment Section (if shown) -->
+              @if(selectedCourse && showAddAssignment){
+                <div class="mt-4 pt-4 border-top">
+                  <div class="assignment-section">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                      <h6 class="fw-bold text-primary mb-0">
+                        <i class="fas fa-clipboard-list me-2"></i>
+                        Add Assignment
+                      </h6>
+                      <button 
+                        class="btn btn-outline-secondary btn-sm"
+                        (click)="showAddAssignment = false"
+                      >
+                        <i class="fas fa-times me-1"></i>
+                        Cancel
+                      </button>
+                    </div>
+                    <app-add-assignment [courseId]="selectedCourse.courseId"></app-add-assignment>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+          <!-- Add Course View -->
+          @if(showAddCourse){
+            <div class="add-course-container">
+              <app-add-course
+                (courseAdded)="onCourseAdded($event)"
+                (cancelAdd)="cancelAddCourse()"
+              ></app-add-course>
+            </div>
+          }
+
+          <!-- Empty State when no course selected -->
+          @if(!showAddCourse && !selectedCourse){
+            <div class="select-course-state text-center py-5">
+              <div class="mb-4">
+                <i class="fas fa-mouse-pointer text-muted" style="font-size: 4rem;"></i>
+              </div>
+              <h4 class="text-muted mb-3">Select a Course</h4>
+              <p class="text-muted mb-4">
+                Choose a course from the left panel to view details and manage assignments
+              </p>
+              <div class="d-flex justify-content-center gap-3">
+                <button 
+                  class="btn btn-primary btn-custom"
+                  (click)="showAddCourse = true; selectedCourse = null"
+                >
+                  <i class="fas fa-plus me-2"></i>
+                  Create New Course
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

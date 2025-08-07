@@ -1,0 +1,88 @@
+/* Simple Courses Page */
+
+.simple-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.page-header h2 {
+  font-size: 32px;
+  color: #333;
+  margin: 0 0 10px 0;
+}
+
+.page-header p {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+/* Courses Grid */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.course-item {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.course-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* No Courses Message */
+.no-courses {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-courses h3 {
+  font-size: 24px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.no-courses p {
+  font-size: 16px;
+  color: #999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .simple-page {
+    padding: 15px;
+  }
+  
+  .page-header h2 {
+    font-size: 24px;
+  }
+  
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  

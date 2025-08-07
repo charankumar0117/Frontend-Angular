@@ -1,0 +1,9 @@
+<div class="card p-3">
+  <h4>{{ course.title }}</h4>
+  <p>{{ course.description }}</p>
+
+  <div class="d-flex justify-content-between mt-2">
+    <button class="btn btn-sm btn-primary" (click)="addAssignment()">Add Assignment</button>
+    <button class="btn btn-sm btn-outline-danger" (click)="delete()">Delete</button>
+  </div>
+</div>

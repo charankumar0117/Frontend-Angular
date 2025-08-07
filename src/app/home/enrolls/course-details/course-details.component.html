@@ -1,0 +1,88 @@
+<div class="container-fluid py-4" *ngIf="course">
+  <div class="row">
+    <div class="col-12">
+      <!-- Course Header Card -->
+      <div class="card card-modern shadow-lg mb-4 animate-fade-in-up">
+        <div class="card-header bg-primary-gradient text-white border-0">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <div class="d-flex align-items-center">
+                <div class="course-header-icon me-3">
+                  <i class="fas fa-graduation-cap fa-2x"></i>
+                </div>
+                <div>
+                  <h2 class="fw-bold mb-1">{{ course.title }}</h2>
+                  <p class="mb-0 text-white-50">
+                    <i class="fas fa-user-graduate me-2"></i>
+                    Course Details & Progress
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 text-md-end">
+              <a 
+                (click)="onClickOfUrl(course)" 
+                [href]="course.contentUrl" 
+                class="btn btn-warning btn-lg fw-bold px-4" 
+                target="_blank"
+              >
+                <i class="fas fa-external-link-alt me-2"></i>
+                Open Course
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="card-body p-4">
+          <h5 class="fw-bold text-dark mb-3">
+            <i class="fas fa-chart-line text-primary me-2"></i>
+            Learning Progress
+          </h5>
+          <div class="mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="text-muted">Overall Progress</span>
+              <span class="fw-bold">{{ course.progress || 0 }}%</span>
+            </div>
+            <div class="progress">
+              <div 
+                class="progress-bar bg-success" 
+                role="progressbar" 
+                [style.width.%]="course.progress || 0"
+                [attr.aria-valuenow]="course.progress || 0"
+                [attr.aria-valuemin]="0" 
+                [attr.aria-valuemax]="100">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Assignments Section -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card card-modern shadow-lg animate-fade-in-up" style="animation-delay: 0.3s;">
+        <div class="card-header bg-light border-0">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="fw-bold mb-0">
+              <i class="fas fa-clipboard-list text-primary me-2"></i>
+              Course Assignments
+            </h5>
+            <span class="badge bg-primary-gradient fs-6 px-3 py-2">
+              <i class="fas fa-tasks me-1"></i>
+              Active
+            </span>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <app-assignment-list [courseId]="course.courseId"></app-assignment-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

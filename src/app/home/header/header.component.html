@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary-gradient shadow-lg">
+  <div class="container">
+    <!-- Brand -->
+    <span class="navbar-brand fw-bold" style="cursor: pointer;" (click)="home()">
+      <i class="fas fa-graduation-cap me-2"></i>
+      EduPortal
+    </span>
+
+    <!-- Mobile toggle button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navigation items -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" (click)="home()" style="cursor: pointer;">
+            <i class="fas fa-home me-1"></i>Home
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" routerLink="courses" routerLinkActive="active">
+            <i class="fas fa-book me-1"></i>Courses
+          </a>
+        </li>
+      
+        @if(role!='INSTRUCTOR'){
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" routerLink="enrolls" routerLinkActive="active">
+            <i class="fas fa-user-graduate me-1"></i>My Enrollments
+          </a>
+        </li>
+        }
+
+        @if(role!='INSTRUCTOR'){
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" routerLink="submissions" routerLinkActive="active">
+            <i class="fas fa-file-upload me-1"></i>Submissions
+          </a>
+        </li>
+        }
+
+        @if(role=="INSTRUCTOR"){
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" routerLink="courseByAdmin" routerLinkActive="active">
+            <i class="fas fa-chalkboard-teacher me-1"></i>My Courses
+          </a>
+        </li>
+        }
+      </ul>
+
+      <!-- User actions -->
+      <div class="navbar-nav">
+        <div class="d-flex align-items-center gap-3">
+          <a class="nav-link fw-semibold" routerLink="profile" routerLinkActive="active">
+            <i class="fas fa-user me-1"></i>Profile
+          </a>
+          <button class="btn btn-outline-light btn-sm fw-semibold" (click)="logout()">
+            <i class="fas fa-sign-out-alt me-2"></i>Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

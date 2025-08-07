@@ -1,0 +1,20 @@
+{
+    "/api": {
+      "target": "http://localhost:8089",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/courses": {
+    "target": "http://localhost:8089",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/student": {
+    "target": "http://localhost:8089",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+}
+  }
+  

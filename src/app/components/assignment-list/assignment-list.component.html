@@ -1,0 +1,11 @@
+<div *ngIf="assignments.length > 0; else noAssignments">
+  <p>Already added assignments</p>
+  <div *ngFor="let a of assignments" class="card mb-2 p-2">
+    <h5>Assignment with Id:{{ a.assessmentId }}</h5>
+    <p>Max Score: {{ a.maxScore }}</p>
+  </div>
+</div>
+
+<ng-template #noAssignments>
+  <p class="text-muted">No assignments found for this course.</p>
+</ng-template>

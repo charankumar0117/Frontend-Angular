@@ -1,0 +1,127 @@
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card card-modern shadow-lg">
+        <!-- Card Header -->
+        <div class="card-header bg-primary-gradient text-white">
+          <h4 class="fw-bold mb-0">
+            <i class="fas fa-plus-circle me-2"></i>
+            Add New Course
+          </h4>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body p-5">
+          <form #courseForm="ngForm" (ngSubmit)="addCourse(courseForm)" novalidate>
+            <!-- Course Title -->
+            <div class="mb-4">
+              <label for="courseTitle" class="form-label fw-semibold">
+                <i class="fas fa-heading text-primary me-2"></i>
+                Course Title
+              </label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0">
+                  <i class="fas fa-book text-muted"></i>
+                </span>
+                <input
+                  id="courseTitle"
+                  name="title"
+                  [(ngModel)]="newCourse.title"
+                  class="form-control border-start-0 form-control-lg"
+                  placeholder="Enter an engaging course title"
+                  required
+                  #title="ngModel"
+                />
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="title.invalid && title.touched">
+                <i class="fas fa-exclamation-triangle me-1"></i>
+                Course title is required
+              </div>
+              
+            </div>
+
+            <!-- Course Description -->
+            <div class="mb-4">
+              <label for="courseDescription" class="form-label fw-semibold">
+                <i class="fas fa-align-left text-primary me-2"></i>
+                Course Description
+              </label>
+              <textarea
+                id="courseDescription"
+                name="description"
+                [(ngModel)]="newCourse.description"
+                class="form-control form-control-lg"
+                placeholder="Provide a detailed description of what students will learn..."
+                rows="5"
+                required
+                #description="ngModel"
+              ></textarea>
+              <div class="invalid-feedback d-block" *ngIf="description.invalid && description.touched">
+                <i class="fas fa-exclamation-triangle me-1"></i>
+                Course description is required
+              </div>
+              
+            </div>
+
+            <!-- Content URL -->
+            <div class="mb-4">
+              <label for="contentUrl" class="form-label fw-semibold">
+                <i class="fas fa-link text-primary me-2"></i>
+                Content URL
+              </label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0">
+                  <i class="fas fa-globe text-muted"></i>
+                </span>
+                <input
+                  id="contentUrl"
+                  name="contentUrl"
+                  [(ngModel)]="newCourse.contentUrl"
+                  type="url"
+                  class="form-control border-start-0 form-control-lg"
+                  placeholder="https://example.com/course-content"
+                  required
+                  pattern="https?://.+"
+                  #contentUrl="ngModel"
+                />
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="contentUrl.errors?.['required'] && contentUrl.touched">
+                <i class="fas fa-exclamation-triangle me-1"></i>
+                Content URL is required
+              </div>
+              <div class="invalid-feedback d-block" *ngIf="contentUrl.errors?.['pattern'] && contentUrl.touched">
+                <i class="fas fa-exclamation-triangle me-1"></i>
+                Please enter a valid HTTP/HTTPS URL
+              </div>
+              
+            </div>
+
+
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-end gap-3 pt-3 border-top">
+              <button 
+                type="button" 
+                class="btn btn-outline-secondary btn-lg btn-custom px-4" 
+                (click)="cancel()"
+              >
+                <i class="fas fa-times me-2"></i>
+                Cancel
+              </button>
+              <button 
+                type="submit" 
+                class="btn btn-primary btn-lg btn-custom px-4" 
+                [disabled]="courseForm.invalid"
+              >
+                <i class="fas fa-plus me-2"></i>
+                Create Course
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

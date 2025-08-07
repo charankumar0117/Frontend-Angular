@@ -1,0 +1,4 @@
+<div *ngFor="let course of courses" class="card m-2 p-2 shadow-sm" (click)="onSelect(course)" style="cursor: pointer;">
+  <h6>{{ course.title }}</h6>
+  <small class="text-muted">{{ course.description }}</small>
+</div>

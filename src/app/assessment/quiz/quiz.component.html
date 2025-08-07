@@ -1,0 +1,166 @@
+<div class="container-fluid section-padding">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <!-- Quiz Header -->
+      <div class="card card-modern shadow-lg mb-4">
+        <div class="card-header bg-primary-gradient text-white">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <h2 class="fw-bold mb-0">
+                <i class="fas fa-brain me-2"></i>
+                Interactive Quiz
+              </h2>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <span class="badge bg-light text-dark fs-6 px-3 py-2">
+                Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress" style="height: 8px;">
+          <div 
+            class="progress-bar bg-success" 
+            role="progressbar" 
+            [style.width.%]="((currentQuestionIndex + 1) / questions.length) * 100"
+            [attr.aria-valuenow]="currentQuestionIndex + 1" 
+            [attr.aria-valuemin]="0" 
+            [attr.aria-valuemax]="questions.length">
+          </div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="card card-modern shadow-lg mb-4 animate-fade-in-up">
+        <div class="card-body p-5">
+          <!-- Question Text -->
+          <div class="question-section mb-4">
+            <h4 class="fw-bold text-dark mb-3">
+              <i class="fas fa-question-circle text-primary me-2"></i>
+              Question {{ currentQuestionIndex + 1 }}
+            </h4>
+            <p class="lead text-dark">{{ currentQuestion.question }}</p>
+          </div>
+
+          <!-- Answer Options -->
+          <div class="options-section">
+            <div class="row g-3">
+              <div 
+                *ngFor="let option of currentQuestion.options; let i = index" 
+                class="col-md-6"
+              >
+                <button
+                  class="btn btn-outline-primary btn-lg w-100 text-start option-btn"
+                  [ngClass]="{
+                    'btn-primary selected': selectedOption === i && !isAnswered,
+                    'btn-success': isAnswered && i === currentQuestion.correctAnswerIndex,
+                    'btn-danger': isAnswered && selectedOption === i && i !== currentQuestion.correctAnswerIndex,
+                    'btn-outline-secondary': isAnswered && selectedOption !== i && i !== currentQuestion.correctAnswerIndex
+                  }"
+                  (click)="checkAnswer(i)"
+                  [disabled]="isAnswered"
+                >
+                  <div class="d-flex align-items-center">
+                    <span class="badge bg-light text-dark me-3 flex-shrink-0">
+                      {{ getOptionLabel(i) }}
+                    </span>
+                    <span class="flex-grow-1">{{ option }}</span>
+                    <i 
+                      class="fas ms-2"
+                      [ngClass]="{
+                        'fa-check text-white': isAnswered && i === currentQuestion.correctAnswerIndex,
+                        'fa-times text-white': isAnswered && selectedOption === i && i !== currentQuestion.correctAnswerIndex
+                      }"
+                      *ngIf="isAnswered && (i === currentQuestion.correctAnswerIndex || (selectedOption === i && i !== currentQuestion.correctAnswerIndex))"
+                    ></i>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Section -->
+          <div *ngIf="isAnswered" class="result-section mt-4 animate-fade-in-up">
+            <div 
+              class="alert d-flex align-items-center" 
+              [ngClass]="{
+                'alert-success': selectedOption === currentQuestion.correctAnswerIndex,
+                'alert-danger': selectedOption !== currentQuestion.correctAnswerIndex
+              }"
+              role="alert"
+            >
+              <i 
+                class="fas fa-2x me-3"
+                [ngClass]="{
+                  'fa-check-circle': selectedOption === currentQuestion.correctAnswerIndex,
+                  'fa-times-circle': selectedOption !== currentQuestion.correctAnswerIndex
+                }"
+              ></i>
+              <div>
+                <h5 class="alert-heading mb-1">
+                  {{ selectedOption === currentQuestion.correctAnswerIndex ? 'Correct!' : 'Incorrect!' }}
+                </h5>
+                <p class="mb-0" *ngIf="selectedOption !== currentQuestion.correctAnswerIndex">
+                  The correct answer is: <strong>{{ currentQuestion.options[currentQuestion.correctAnswerIndex] }}</strong>
+                </p>
+              </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button 
+                *ngIf="currentQuestionIndex < questions.length - 1" 
+                class="btn btn-primary btn-lg btn-custom"
+                (click)="nextQuestion()"
+              >
+                <i class="fas fa-arrow-right me-2"></i>
+                Next Question
+              </button>
+              <button 
+                *ngIf="currentQuestionIndex === questions.length - 1" 
+                class="btn btn-success btn-lg btn-custom"
+                (click)="submitQuiz()"
+              >
+                <i class="fas fa-check me-2"></i>
+                Submit Quiz
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Score Card -->
+      <div class="card card-modern shadow-lg">
+        <div class="card-body p-4">
+          <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+              <div class="score-circle mx-auto mb-2">
+                <span class="h2 fw-bold text-primary">{{ percentage }}%</span>
+              </div>
+              <h6 class="text-muted">Overall Score</h6>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="mb-2">
+                <i class="fas fa-trophy text-warning fa-2x"></i>
+              </div>
+              <h6 class="fw-bold">{{ score }} / {{ questions.length }}</h6>
+              <small class="text-muted">Correct Answers</small>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="mb-2">
+                <i class="fas fa-target text-info fa-2x"></i>
+              </div>
+              <h6 class="fw-bold">{{ questions.length - score }} / {{ questions.length }}</h6>
+              <small class="text-muted">Remaining</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  

@@ -1,0 +1,41 @@
+/* Enhanced footer styling */
+.footer-modern a:hover {
+  color: white !important;
+  transform: translateX(5px);
+  transition: all 0.3s ease;
+}
+
+.footer-modern .list-unstyled li {
+  transition: all 0.3s ease;
+}
+
+.footer-modern .list-unstyled li:hover {
+  transform: translateX(3px);
+}
+
+.footer-modern .fab, .footer-modern .fas {
+  transition: all 0.3s ease;
+}
+
+.footer-modern .fab:hover, .footer-modern .fas:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+/* Social media hover colors */
+.footer-modern a:has(.fa-facebook-f):hover {
+  color: #4267B2 !important;
+}
+
+.footer-modern a:has(.fa-twitter):hover {
+  color: #1DA1F2 !important;
+}
+
+.footer-modern a:has(.fa-linkedin-in):hover {
+  color: #0077B5 !important;
+}
+
+.footer-modern a:has(.fa-instagram):hover {
+  color: #E4405F !important;
+}
+  

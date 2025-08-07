@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>Submitted Assessments</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Submission ID</th>
+          <th>Score</th>
+          <th>Max Score</th>
+          <th>Course Title</th>
+          <th>Course Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sub of submissions">
+          <td>{{ sub.submissionId }}</td>
+          <td>{{ sub.score }}</td>
+          <td>{{ sub.assessment.maxScore }}</td>
+          <td>{{ sub.assessment.course.title }}</td>
+          <td>{{ sub.assessment.course.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="submissions.length === 0" class="empty">
+      No submissions available.
+    </div>
+  </div>
+  

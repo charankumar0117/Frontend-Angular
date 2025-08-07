@@ -1,0 +1,67 @@
+<div class="quiz-container">
+    <h4>Add Quiz Questions ({{ questions.length }}/1)</h4>
+  
+    <form (ngSubmit)="addQuestion()" #quizForm="ngForm" class="quiz-form mb-3">
+      <label>Question</label>
+      <input type="text" name="question" [(ngModel)]="currentQuestion.question" required class="form-control mb-2" />
+      <label>Options</label>
+
+<input
+  type="text"
+  [(ngModel)]="currentQuestion.options[0]"
+  name="option0"
+  placeholder="Option 1"
+  required
+  class="form-control mb-2"
+/>
+
+<input
+  type="text"
+  [(ngModel)]="currentQuestion.options[1]"
+  name="option1"
+  placeholder="Option 2"
+  required
+  class="form-control mb-2"
+/>
+
+<input
+  type="text"
+  [(ngModel)]="currentQuestion.options[2]"
+  name="option2"
+  placeholder="Option 3"
+  required
+  class="form-control mb-2"
+/>
+
+<input
+  type="text"
+  [(ngModel)]="currentQuestion.options[3]"
+  name="option3"
+  placeholder="Option 4"
+  required
+  class="form-control mb-3"
+/>
+
+  
+      <label>Correct Answer</label>
+      <input
+        type="text"
+        name="correctAnswer"
+        [(ngModel)]="currentQuestion.correctAnswer"
+        required
+        placeholder="Enter correct answer text"
+        class="form-control mb-3"
+      />
+  
+      <button type="submit" class="btn btn-success" [disabled]="questions.length >= 10">
+        Add Question
+      </button>
+    </form>
+  
+    <div class="text-end">
+      <button class="btn btn-primary" (click)="submitQuiz()">Submit Quiz</button>
+      </div>
+</div>
+
+
+  
