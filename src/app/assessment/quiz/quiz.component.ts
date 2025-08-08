@@ -26,14 +26,7 @@ export class QuizComponent {
   getOptionLabel(index: number): string {
     return String.fromCharCode(65 + index);
   }
-  questions = [
-    {
-      question: 'What is the capital of France?',
-      options: ['Berlin', 'Madrid', 'Paris', 'Lisbon'],
-      correctAnswerIndex: 2,
-    },
-
-  ];
+  questions :any[]= [];
   ngOnInit(){
 
     this.assignmentId = this.route.snapshot.paramMap.get('id')!;
